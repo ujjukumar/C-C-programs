@@ -7,30 +7,30 @@ class Gates {
 
     public:
 
-        int andFunction(int ip1, int ip2) {
-            return ip1&ip2;
+        int andFunction(int ip1, int ip2, int out) {
+            out = ip1&ip2;
         }
 
-        int orFunction(int ip1, int ip2) {
-            return ip1|ip2;
+        int orFunction(int ip1, int ip2, int out) {
+            out = ip1|ip2;
         }
 
-        int notFunction(int ip1) {
-            return !ip1;
+        int notFunction(int ip1,int out) {
+            out = !ip1;
         }
 
-        int xorFunction(int ip1, int ip2) {
+        int xorFunction(int ip1, int ip2, int out) {
             
             if(ip1==ip2) {
-                return 0;
+                out = 0;
             }
             else {
-                return 1;
+                out = 1;
             }
         }
 
-        int norFunction(int ip1, int ip2) {
-            return !orFunction(ip1, ip2);
+        int norFunction(int ip1, int ip2, int out) {
+            out = !orFunction(ip1, ip2, out);
         }
 
 };
