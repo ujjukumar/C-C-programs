@@ -1,5 +1,4 @@
 #include "all_classes.h"
-#include<iostream>
 
 void Info::setValues(string x, string y, int z) {
             name = x;
