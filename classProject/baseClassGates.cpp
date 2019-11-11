@@ -1,64 +1,44 @@
 #include<iostream>
-#include<math.h>
 
 using namespace std;
 
-class Gates {
-
-public:
-
-int andFunction(int ip1, int ip2, int out) {
-	out = ip1&ip2;
-}
-
-int orFunction(int ip1, int ip2, int out) {
-	out = ip1|ip2;
-}
-
-int notFunction(int ip1) {
-	return !ip1;
-}
-
-int xorFunction(int ip1, int ip2, int out) {
+class Gates{
 	
-	if(ip1 == ip2) {
-		out = 0;
-	}
-	else {
-		out = 1;
-	}
-}
+	public:
 
-int norFunction(int ip1, int ip2, int out) {
-	out = !orFunction(ip1, ip2, out);
-}
+		int notGate(int input) {
+			if(input==0)
+				return 1;
+			return 0;
+		}
 
+		int andGate(int firstInput,int secondInput) {
+			if(firstInput==0 || secondInput==0)
+				return 0;
+			return 1;
+		}
+
+		int norGate(int firstInput,int secondInput) {
+			if(firstInput==0 && secondInput==0)
+				return 1;
+			return 0;
+		}
+
+		int xorGate(int firstInput,int secondInput) {
+			if(firstInput==secondInput)
+				return 0;
+			return 1;
+		}
+
+		int orGate(int firstInput, int secondInput) {
+			if(firstInput==1 || secondInput==1)
+				return 1;
+			return 0; 
+		}
+
+		int nandGate(int firstInput, int secondInput) {
+			if(firstInput==1 && secondInput==1)
+				return 0;
+			return 1;
+		}
 };
-
-// class ffActions {
-
-// public:
-// 	int output[] ={};
-
-// 	int set(int out[]) {
-// 		out[0] = 1;
-// 		out[1] = 0;
-// 	}
-
-// 	int reset(int out[]) {
-// 		out[0] = 0;
-// 		out[1] = 1;
-// 	}
-
-// 	int toggle(int j, int k, int out[]) {
-// 		out[0] = !j;
-// 		out[1] = !k;
-// 	}
-
-// 	int noChange(int j, int k, int out[]) {
-// 		out[0] = j;
-// 		out[1] = k;
-// 	}
-// };
-
-// For Testing the classes functions

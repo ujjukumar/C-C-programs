@@ -1,4 +1,4 @@
-#include "test.cpp"
+#include "derivedClasses.cpp"
 
 int main() {
 
@@ -17,6 +17,8 @@ int main() {
 		cin >> choice;
 
 		if(choice==1) {
+			cout << "\n Half Adder Program";
+
 			cout << "\n Enter the value of A : ";
 			cin >> a;
 			cout << "\n Enter the value of B : ";
@@ -45,6 +47,8 @@ int main() {
 		}
 
 		if(choice==2) {
+			cout << "\n Full Adder Program";
+
 			cout << "\n Enter the value of A : ";
 			cin >> a;
 			cout << "\n Enter the value of B : ";
@@ -74,6 +78,7 @@ int main() {
 		}
 
 		if(choice == 3) {
+			cout << "/n Ripple Adder Program";
 
 			int x[3] ={},y[3]={},z,s[3] = {},cr[3] = {};
 			// int s1,s2,s3,s4,c1,c2,c3,c4;
@@ -90,19 +95,6 @@ int main() {
 			cin >> z;
 
 			rippleAdder RA;
-			// s1 = RA.raSum(x[0],y[0],z);
-			// c1 = RA.raCarry(x[0],y[0],z);
-
-			// s2 = RA.raSum(x[1],y[1],c1);
-			// c2 = RA.raCarry(x[1],y[1],c1);
-
-			// s3 = RA.raSum(x[2],y[2],c2);
-			// c3 = RA.raCarry(x[2],y[2],c2);
-
-			// s4 = RA.raSum(x[3],y[3],c3);
-			// c4 = RA.raSum(x[3],y[3],c3);
-
-			// cout << s1 << s2 << s3 << s4 << c4;
 			cr[0] = z;
 			for( int i = 1;i < 4; i++) {
 				cr[i] = RA.raCarry(x[i], y[i], cr[i-1]);
