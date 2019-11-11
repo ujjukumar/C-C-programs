@@ -1,5 +1,4 @@
 #include<iostream>
-#include<stdbool.h>
 
 using namespace std;
 
@@ -44,39 +43,67 @@ class Gates{
 		}
 };
 
-int main() {
-    Gates gates;
-    int a,b,loop=1,notA,notB,andOutput,norOutput,xorOutput,nandOutput;
 
-    while(loop==1) {
+class halfAdder : public Gates {
+	public:
+		int haSum(int a, int b) {
+			return xorGate(a, b);
+		}
 
-        cout << "\n Enter the value of A : ";
-        cin >> a;
-        cout << "\n Enter the value of B : ";
-        cin >> b;
+		int haCarry(int a, int b) {
+			return andGate(a, b);
+		}
 
-    if(a>=0 && a<=1 && b>=0 && b<=1){
+		void haTruthTable() {
+			cout << "-----TRUTH TABLE-----\n\n" << endl;
+			cout << "A\t\t" << "B\t\t\t" << "SUM\t\tCARRY" <<endl;
 
-        //Here you define your circuit
-        notA=gates.notGate(a);    //use not gate  
-        notB=gates.notGate(b);
-        andOutput=gates.andGate(notA,notB); // use and gate
-        norOutput=gates.norGate(a,b); //use nor gate      
-        xorOutput=gates.xorGate(a,b); //use xor gate
-		nandOutput=gates.nandGate(a,b); //use nand gate
-        //circuit definition ends
+			cout << "0\t\t" << "0\t\t\t" << "0\t\t0" <<endl;
+			cout << "0\t\t" << "1\t\t\t" << "1\t\t0" <<endl;
+			cout << "1\t\t" << "0\t\t\t" << "1\t\t0" <<endl;
+			cout << "1\t\t" << "1\t\t\t" << "1\t\t1" <<endl;
 
-        cout << "\n The output the circuit : ";
-        cout << notA << "\t" << notB << "\t" << andOutput << "\t" << norOutput << "\t";
-		cout << xorOutput <<"\t" << nandOutput << endl;
-        cout <<"\n";
-    }
-    else {
-        cout<< "\nValue of A & B should be either 1 or 0 \n";
-    }
+			cout << "------------------------" << endl;
+		}
+};
 
-    cout << "\nPress 1 to continue or press any other key to exit : ";
-        cin >> loop;
-        }
-    return 0;
-}
+class fullAdder : public halfAdder {
+	public:
+		int sum_temp,c1_temp,c2_temp;
+
+		int faSum(int a, int b, int c) {
+			return haSum(c,haSum(a,b));
+		}
+
+		int faCarry(int a, int b, int c) {
+			return orGate(haCarry(a,b),haCarry(haSum(a,b),c));
+		}
+
+		void faTruthTable() {
+			cout << "-----TRUTH TABLE-----\n\n" << endl;
+			cout << "A\t\t" << "B\t\t" << "C\t\t\t" << "SUM\t\tCARRY" <<endl;
+
+			cout << "0\t\t" << "0\t\t" << "0\t\t\t" << "0\t\t0" <<endl;
+			cout << "0\t\t" << "0\t\t" << "1\t\t\t" << "1\t\t0" <<endl;
+			cout << "0\t\t" << "1\t\t" << "0\t\t\t" << "1\t\t0" <<endl;
+			cout << "0\t\t" << "1\t\t" << "1\t\t\t" << "0\t\t1" <<endl;
+			cout << "1\t\t" << "0\t\t" << "0\t\t\t" << "1\t\t0" <<endl;
+			cout << "1\t\t" << "0\t\t" << "1\t\t\t" << "0\t\t1" <<endl;
+			cout << "1\t\t" << "1\t\t" << "0\t\t\t" << "0\t\t1" <<endl;
+			cout << "1\t\t" << "1\t\t" << "1\t\t\t" << "1\t\t1" <<endl;
+
+			cout << "------------------------------------" << endl;
+		}
+};
+
+class rippleAdder : public fullAdder {
+	public:
+
+		int raCarry(int a, int b, int carryIn) {
+			return faCarry(a,b,carryIn);
+		}
+
+		int raSum(int a, int b, int carryIn) {
+			return faSum(a,b,carryIn);
+		}
+};
