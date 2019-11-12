@@ -80,36 +80,29 @@ int main() {
 		if(choice == 3) {
 			cout << "/n Ripple Adder Program";
 
-			int x[3] ={},y[3]={},z,s[3] = {},cr[3] = {};
-			// int s1,s2,s3,s4,c1,c2,c3,c4;
+//			int x[3] ={},y[3]={},z,s[3] = {},cr[3] = {};
+			int a0,a1,a2,a3,b0,b1,b2,b3,s0,s2,s3,s1,c1,c2,c3,c0,ci;
 
-			cout << "\n Enter the value of A : ";
-			for(int i=0;i<4;i++)  {
-				cin >> x[i];
-			}
-			cout << "\n Enter the value of B : ";
-			for(int i=0;i<4;i++)  {
-				cin >> y[i];
-			}
-			cout << "\n Enter the value of Carry Input : ";
-			cin >> z;
+			cout << "\n Enter the A value : "; cin >> a3 >> a2 >> a1 >> a0;
+			cout << "\n Enter the B value : "; cin >> b3 >> b2 >> b1 >> b0;
+			cout << "\n Enter Carry Value "; cin >> ci;
 
 			rippleAdder RA;
-			cr[0] = z;
-			for( int i = 1;i < 4; i++) {
-				cr[i] = RA.raCarry(x[i], y[i], cr[i-1]);
-			}
+			//for carry values
+			c0 = RA.raCarry(a0,b0,ci); 
+			c1 = RA.raCarry(a1,b1,c0);
+			c2 = RA.raCarry(a2,b2,c1); 
+			c3 = RA.raCarry(a3,b3,c2); 
 
-			for(int i=0 ;i<4 ;i++) {
-				s[i] = RA.raSum(x[i],y[i],cr[i]);
-			}
+			//for Sum values
+			s0 = RA.raSum(a0,b0,ci);
+			s1 = RA.raSum(a1,b1,c0); 
+			s2 = RA.raSum(a2,b2,c1); 
+			s3 = RA.raSum(a3,b3,c2); 
 
-			cout << "\n The Ripple Sum is : " << "\t";
-			for(int i=0 ;i<4 ;i++) {
-				cout << s[3-i] << "\t";
-			}
-
-			cout << "\n And the Ripple Carry is : " << cr[3];
+			//Output results
+			cout << "The Ripple Sum is : " << "\t" << s3 << "\t" << s2 << "\t" << s1 << "\t" << s0;
+			cout << "\n"<< "The Carry Out Value is : " << c3;
 
 			cout << "\n Press 1 to continue or press any other key to exit : ";
 			cin >> loop;
